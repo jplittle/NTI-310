@@ -1,0 +1,177 @@
+    1  yum install -y git
+    2  cd /tmp
+    3  git clone :https://github.com/nic-instruction/hello-nti-310.git
+    4  git clone https://github.com/nic-instruction/hello-nti-310.git
+    5  yum install -y openldap-servers openldap-clients
+    6  cp /usr/share/openlda-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
+    7  cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
+    8  chown ldap. /var/lib/ldap/DB_CONFIG
+    9  systemctl enable slapd
+   10  systemctl start slapd
+   11  yum install httpd -y
+   12  yum install epel-release -y
+   13  hum install phpdapadmin -y
+   14  yum install phpdapadmin -y
+   15  setsebool -P httpd_can_connect_ldap on
+   16  systemctl enable httpd
+   17  systemctl start httpd
+   18  systemctl status httpd
+   19  sed -i 's,Require local,#Require local\n Require all granted,g' /etc/httpd/conf.d/phpdapadmin.c
+ 20  sed -i 's,Require local,#Require local\n Require all granted,g' /etc/httpd/conf.d/phpdalpadmin.
+conf
+   21  sed -i 's,Require local,#Require local\n Require all granted,g' /etc/httpd/conf.d/phpldapadmin.
+conf
+   22  yum install phpldapadmin
+   23  systemctl enable httpd
+   24  systemctl start httpd
+   25  sed -i 's,Require local,#Require local\n Require all granted,g' /etc/httpd/conf.d/phldapadmin.c
+onf
+   26  sed -i 's,Require local,#Require local\n    Require all granted,g' /etc/httpd/conf.d/phpldapadm
+in.conf
+   27  cp /etc/phpldapadmin/config.php /etc/phpldapadmin/config.php.orig
+   28  cp /tmp/hello-nti-310/config/config.php /etc/phpldapadmin/config.php
+   29  chown ldap:apache /etc/phpldapadmin/config.php
+   30  systemctl restart httpd.service
+   31  cp /tmp/NTI-310/myconfig /etc/phpldapadmin/config.php
+   32  unalias cp
+   33  chow ldap:apache /etc/phpladapadmin/config.php
+   34  chown ldap:apache /etc/phpladapadmin/config.php
+   35  history
+   36  cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG 
+   37  yum -y install openldap-servers openldap-clients
+   38  chown ldap. /var/lib/ldap/DB_CONFIG
+   39  systemctl enable slapd
+   40  systemctl start slapd
+   41  yum -y install httpd
+   42  yum -y install phpldapadmin
+   43  setsebool -P httpd_can_connect_ldap on
+   44  systemctl enable httpd
+   45  systemctl start httpd
+46  sed -i 's,Require local,#Require local\n    Require all granted,g' /etc/httpd/conf.d/phpldapadm
+in.conf
+   47  echo "dn: olcDatabase={2}hdb,cn=config
+
+changetype: modify
+
+replace: olcSuffix
+
+olcSuffix: dc=nti310,dc=local
+
+dn: olcDatabase={2}hdb,cn=config
+
+changetype: modify
+
+replace: olcRootDN
+
+olcRootDN: cn=ldapadm,dc=nti310,dc=local
+
+dn: olcDatabase={2}hdb,cn=config
+
+changetype: modify
+
+replace: olcRootPW
+
+olcRootPW: $newhash" >> db.ldif
+   48  ldapmodify -Y EXTERNAL  -H ldapi:/// -f db.ldif
+   49  echo 'dn: olcDatabase={1}monitor,cn=config
+
+changetype: modify
+
+replace: olcAccess
+50  ldapmodify -Y EXTERNAL  -H ldapi:/// -f monitor.ldif
+   51  openssl req -new -x509 -nodes -out /etc/openldap/certs/nti310ldapcert.pem -keyout /etc/openldap
+/certs/nti310ldapkey.pem -days 365 -subj "/C=US/ST=WA/L=Seattle/O=SCC/OU=IT/CN=nti310.local"
+   52  chown -R ldap. /etc/openldap/certs/nti*.pem
+   53  echo "dn: cn=config
+
+changetype: modify
+
+replace: olcTLSCertificateFile
+
+olcTLSCertificateFile: /etc/openldap/certs/nti310ldapcert.pem
+
+dn: cn=config
+
+changetype: modify
+
+replace: olcTLSCertificateKeyFile
+
+olcTLSCertificateKeyFile: /etc/openldap/certs/nti310ldapkey.pem" > certs.ldif
+   54  ldapmodify -Y EXTERNAL  -H ldapi:/// -f certs.ldif
+   55  slaptest -u
+   56  unalias cp
+   57  slaptest -u
+   58  unalias cp
+   59  ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
+   60  ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif 
+   61  ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
+   62  echo "dn: dc=nti310,dc=local
+63  ldapadd -x -W -D "cn=ldapadm,dc=nti310,dc=local" -f base.ldif -y /root/ldap_admin_pass
+   64  echo -e "dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcSuffix
+olcSuffic: dc=nti210,dc=local
+\n
+
+
+
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcRootDN
+olcRootDN: cn=ldapadm,dc=nti310,dc=local
+\n
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcRootPW
+olcRootPW: @newhash" > db.ldif
+   65  ldapmodicy -Y EXTERNAL -H ldapi:/// -f db.ldif
+   66  ldapmodify -Y EXTERNAL  -H ldapi:/// -f db.ldif
+   67  echo 'dn: olcDatabase={1}monitor,cn=config
+changetype: modify
+replace: olcAccess
+olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external, cn=auth" read by dn.ba
+se="cn=ldapadm,dc=nti310,dc=local" read by * none' > monitor.ldif
+   68  ldapmodify -Y EXTERNAL  -H ldapi:/// -f monitor.ldif
+   69  openssl req -new -x509 -nodes -out /etc/openldap/certs/nti310ldapcert.pem -keyout /etc/openldap
+70  chown -R ldap. /etc/openldap/certs/nti*.pem
+   71  echo "dn: cn=config
+changetype: modify
+
+olcTLSCertificateFile: /etc/openldap/certs/nti310ldapcert.pem
+dn: cn=config
+changetype: modify
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/openldap/certs/nti310ldapkey.pem" > certs.ldif
+   72  ldapmodify -Y EXTERNAL  -H ldapi:/// -f certs.ldif
+   73  unalias cp
+   74  ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
+   75  ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
+   76  echo "dn: dc=nti310,dc=local
+dc: nti310
+objectClass: top
+
+dn: cn=ldapadm ,dc=nti310,dc=local
+objectClass: organizationalRole
+cn: ldapadm
+description: LDAP Manager
+dn: ou=People,dc=nti310,dc=local
+objectClass: organizationalUnit
+ou: People
+dn: ou=Group,dc=nti310,dc=local
+objectClass: organizationalUnit
+ou: Group" > base.ldif
+   77  ldapadd -x -W -D "cn=ldapadm,dc=nti310,dc=local" -f base.ldif -y /root/ldap_admin_pass
+   78  history
+   79  history
+
+
+
+
+
+
+
+
+
+
+
+
