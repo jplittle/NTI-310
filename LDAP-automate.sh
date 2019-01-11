@@ -65,11 +65,40 @@ sed -i 's,Require local,#Require local\n    Require all granted,g' /etc/httpd/co
 #
 cp /etc/phpldapadmin/config.php /etc/phpldapadmin/config.php.orig
 
-cp /tmp/LDAP-automate.sh/config/config.php /etc/phpldapadmin/config.php
+cp /tmp/hello-nti-310/config/config.php /etc/phpldapadmin/config.php
 
 chown ldap:apache /etc/phpldapadmin/config.php
 
 systemctl restart httpd.service
+
+echo "phpldapadmin is now up and running:
+echo "we are configuring ldap and ldapadmin"
+
+#Generates and stores new passwd securely
+newsecret=$(slappasswd -g)
+newhash=$(slappasswd -s "$newsecret")
+echo -n "$newsecret: > /root/ldap_admin_pass
+chmod 0600 /root/ldap_admin_pass
+
+echo -e "dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcSuffix
+olcSuffic: dc=nti210,dc=local
+\n
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcRootDN
+olcRootDN: cn=ldapadm,dc=nti310,dc=local
+\n
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcRootPW
+olcRootPW: @newhash" > db.ldif
+
+ldapmodicy -Y EXTERNAL -H ldapi:/// -f db.ldif
+#Auth restriction
+
+
 
 
 
