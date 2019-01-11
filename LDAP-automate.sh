@@ -63,7 +63,13 @@ sed -i 's,Require local,#Require local\n    Require all granted,g' /etc/httpd/co
 #open tcp port 389
 
 #
+cp /etc/phpldapadmin/config.php /etc/phpldapadmin/config.php.orig
 
+cp /tmp/LDAP-automate.sh/config/config.php /etc/phpldapadmin/config.php
+
+chown ldap:apache /etc/phpldapadmin/config.php
+
+systemctl restart httpd.service
 
 
 
