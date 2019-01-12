@@ -1,0 +1,82 @@
+     yum install -y git # instalilng git
+   
+     cd /tmp # navigating to the /tmp directory 
+    
+     git clone :https://github.com/nic-instruction/hello-nti-310.git # cloning original config file
+    
+     yum install -y openldap-servers openldap-clients # installing openldap servesr and clients
+    
+     cp /var/lib/ldap/DB_CONFIG > newbackup1 # backing up file before writing over it
+       
+     cp /usr/share/openlda-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG # re writing config files 
+   
+     chown ldap. /var/lib/ldap/DB_CONFIG # chaning ownership from root
+    
+     systemctl enable slapd # enabilng and starting ldap 
+     systemctl start slapd
+     yum install httpd -y # instalilng httpd with -y parameter to anwser yes
+   
+     setsebool -P httpd_can_connect_ldap on # telling SE what is happening
+   
+     systemctl enable httpd # enabling and starting httpd, checking status
+   
+     systemctl start httpd 
+   
+     systemctl status httpd
+   
+     sed -i 's,Require local,#Require local\n Require all granted,g' /etc/httpd/conf.d/phpdapadmin.c
+   
+     cp /etc/phpldapadmin/config.php /etc/phpldapadmin/config.php.orig
+   
+     cp /tmp/NTI-310/myconfig/config.php /etc/phpldapadmin/config.php
+   
+     chown ldap:apache /etc/phpldapadmin/config.php
+   
+     systemctl restart httpd.service # restarting httpd. service
+   
+     cp /tmp/NTI-310/myconfig /etc/phpldapadmin/config.php
+   
+     unalias cp # removing unalias cp command
+   
+     chow ldap:apache /etc/phpladapadmin/config.php
+   
+     chown ldap:apache /etc/phpladapadmin/config.php
+     
+     # Generate/store new pass
+     newsecret=$(slappasswd -g)
+     newhash=$(slappasswd -g)
+     echo -n "$newsecret" > /root/ldap_admin_pass
+     chmod 0600 /root/ldap_admin_pass
+     
+     
+   
+ echo "dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcSuffix
+olcSuffix: dc=nti310,dc=local
+
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcRootDN
+olcRootDN: cn=ldapadm,dc=nti310,dc=local
+
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcRootPW
+olcRootPW: $newhash" >> db.ldif
+   48  ldapmodify -Y EXTERNAL  -H ldapi:/// -f db.ldif
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
