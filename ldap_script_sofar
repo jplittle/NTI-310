@@ -100,11 +100,17 @@ replace: olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile: /etc/openldap/certs/nti310ldapkey.pem" > cert.ldif
 ldapmodify -Y external -H ldapi:/// -f certs.ldif
+
 #Test to see if cert config works
 slaptest -u
 echo "it works"
 
 unalias cp
+
+ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
+
 
 
 
