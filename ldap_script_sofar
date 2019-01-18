@@ -64,10 +64,47 @@ dn: olcDatabase={2}hdb,cn=config
 changetype: modify
 replace: olcRootPW
 olcRootPW: $newhash" >> db.ldif
-   48  ldapmodify -Y EXTERNAL  -H ldapi:/// -f db.ldif
-   
+
+ldapmodify -Y EXTERNAL  -H ldapi:/// -f db.ldif
 
 
+
+
+#DAY3
+
+
+
+
+#Auth restriction
+
+echo "dn: olcDatabase={1}monitor , cn=config
+changetype: modify
+replace: olcAccess
+olcAccess: {0}to * by.dnbase="gidNumber=0+uidNumber=0,cn=peercred,cn=auth" read by dn.abse="vn=ldapadm,dc=nti310,dc=local" read by * none; > monitor.ldif
+
+ldapmodify -Y EXTERNAL -H ldapi:/// -f monitor.ldif # calling the monitor.ldif
+
+#Generates Certs
+
+opensll req -new -x509 -nodes -out /etc/openldap/certs/nti310ldapcert.pem -keyout /etc/openldap/certs/nti310ldapkey -pem -days 365 -subj "/C=US/ST=WA/L=Seattle/O=SCC/OU+IT/CN=nti310.local"
+chown -R ldap. /etc/openldap/erts/nti*.pem # changing ownership to LDAP user instead of root to make certs available
+
+echo -e "dn: cn=config
+changetype: modify
+replace: olcTLSCertificateFile
+olcTLSCertificateKeyFile: /etc/openldap/certs/nti310ldapcert.pem
+\n
+dn: cn=config
+changetype: modify
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/openldap/certs/nti310ldapkey.pem" > cert.ldif
+ldapmodify -Y external -H ldapi:/// -f certs.ldif
+#Test to see if cert config works
+slaptest -u
+echo "it works"
+
+unalias cp
 
 
 
