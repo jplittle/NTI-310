@@ -18,3 +18,8 @@
     mount -a
     showmount -e $ipaddress
  showmount -e 10.142.0.7
+# whats my ip? ifconfig | grep broadcast | awk '{print $2}'
+# set to variable ipaddress=(ifconfig | grep broadcast | awk '{print $2}')
+# echo $ipaddress
+
+
