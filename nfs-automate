@@ -1,20 +1,20 @@
  1  yum install -y nfs-utils
-    2  mkdir /var/nfsshare /var/nfsshare/devstuff /var/nfsshare/testing /var/nfsshare/home_dirs
-    3  chmod -R 777 /var/nfsshare/
-    4  for service in rpcbind nfs-server nfs-lock nfs-idmap; do echo "systemctl enable $service"; done
-    5  for service in rpcbind nfs-server nfs-lock nfs-idmap; do systemctl start $service; done
-    6  for service in rpcbind nfs-server nfs-lock nfs-idmap; do systemctl enable $service; done
-    7  for service in rpcbind nfs-server nfs-lock nfs-idmap; do systemctl start $service; done
-    8  cd /var/nfsshare/
-    9  echo "/var/nfsshare/home_dirs *(rw,sync,no_all_squash)
+      mkdir /var/nfsshare /var/nfsshare/devstuff /var/nfsshare/testing /var/nfsshare/home_dirs
+      chmod -R 777 /var/nfsshare/
+      for service in rpcbind nfs-server nfs-lock nfs-idmap; do echo "systemctl enable $service"; done
+      for service in rpcbind nfs-server nfs-lock nfs-idmap; do systemctl start $service; done
+      for service in rpcbind nfs-server nfs-lock nfs-idmap; do systemctl enable $service; done
+      for service in rpcbind nfs-server nfs-lock nfs-idmap; do systemctl start $service; done
+      cd /var/nfsshare/
+      echo "/var/nfsshare/home_dirs *(rw,sync,no_all_squash)
 /var/nfsshare/devstuff *(rw,sync,no_all_squash)
 /var/nfsshare/testing *(rw,sync,no_all_squash)" >> /etc/exports
-   10  systemctl restart nfs-server
-   11  yum -y install net-tools
-   12  showmount -e $ipaddress
-   13  mkdir /mnt/test
-   14  ifconfig
-   15  echo "10.142.0.11:/var/nfsshare/testing     /mnt/test     nfs     defaults 0 0" >> /etc/fstab
-   16  mount -a
-   17  showmount -e $ipaddress
-18 showmount -e 10.142.0.11
+     systemctl restart nfs-server
+     yum -y install net-tools
+     showmount -e $ipaddress
+    mkdir /mnt/test
+    ifconfig
+    echo "10.142.0.7:/var/nfsshare/testing     /mnt/test     nfs     defaults 0 0" >> /etc/fstab
+    mount -a
+    showmount -e $ipaddress
+ showmount -e 10.142.0.7
