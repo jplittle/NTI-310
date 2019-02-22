@@ -53,3 +53,9 @@ echo "account sufficient pam_succeed_if.so uid = 0 use_uid quiet" >> /etc/pam.d/
 # restarting nscd, enabling nscd
 systemctl restart nscd
 systemctl enable nscd
+
+
+
+#sed -i 's/base dc=example,dc=net/base dc=nti310,dc=local/g'
+#sed -i 's, ,uri ldapi:///,uri ldap://ldap2/,g' /etc/ldap.conf 
+#sed -i 's/rootbindn cn=manager,dc=example,dc=net/rootbinddn cn=ldapadm,dc=nti310,dc=local/g' /etc/dap.conf 
