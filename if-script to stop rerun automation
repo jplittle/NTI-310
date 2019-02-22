@@ -1,0 +1,3 @@
+if [ -e /etc/ldap.secret]; then 
+exit 0;
+fi
