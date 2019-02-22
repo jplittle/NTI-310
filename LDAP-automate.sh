@@ -2,7 +2,8 @@
 
 yum install -y git
 cd /tmp
-git clone https://github.com/jplittle/LDAP-automate.sh
+# git clone https://github.com/jplittle/LDAP-automate.sh
+git clone https://github.com/jplittle/NTI-310.git
 
 yum -y install openldap-servers openldap-clients
 
