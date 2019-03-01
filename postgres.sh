@@ -42,4 +42,3 @@ systemctl restart postgresql
 # http://ip/phpPgAdmin
 # un = pgduser
 # pw = pgdpass
-
