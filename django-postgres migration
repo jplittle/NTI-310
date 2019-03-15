@@ -1,27 +1,16 @@
 #!/bin/bash
 
 sudo su
-
 yum install -y python-pip
-
 pip install virtualenv
-
 pip install --upgrade pip
-
 mkdir ~/myproject && cd ~/myproject
-
 virtualenve myprojectenv
-
 source myprojectenv/bin/activate
-
 pip install django psycopg2
-
 django-admin.py startproject myproject .
-
 #vim ~/myproject/myproject/settings.py
-
 #below cannot be sed or perled in
-
 perl -i -pe 's/DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
