@@ -1,4 +1,5 @@
- 1  yum install -y nfs-utils
+ !#/bin/bash
+ yum install -y nfs-utils
       mkdir /var/nfsshare /var/nfsshare/devstuff /var/nfsshare/testing /var/nfsshare/home_dirs
       chmod -R 777 /var/nfsshare/
       for service in rpcbind nfs-server nfs-lock nfs-idmap; do echo "systemctl enable $service"; done
