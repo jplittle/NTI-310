@@ -26,3 +26,5 @@ perl -i -pe 's/DATABASES = {
         'PORT': '5432',
     }
 }/g' ~/myproject/myproject/settings.py
+python manage.py makemigrations
+python manage.y migrate
