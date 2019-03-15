@@ -1,23 +1,37 @@
+###Clients, NFS server, and rsyslog server does NOT need the https and https tags!!!!!!!
+# sudo su
+# yum install git
+# yum install wget
+
+
 ################
 # Servers
 ################
-gcloud compute instances create rsyslog-server2 \
---image-family centos-7 \
---image-project centos-cloud \
---zone us-east1-b \
---tags "http-server","https-server" \
---machine-type f1-micro \
---scopes cloud-platform
---metadata-from-file startup-script=/path/to/script.sh
 
-gcloud compute instances create rsyslog-server2 \
+###########
+# SysLog
+###########
+gcloud compute instances create rsyslog-server1 \
 --image-family centos-7 \
 --image-project centos-cloud \
 --zone us-east1-b \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform
---metadata-from-file startup-script=/path/to/script.sh
+--metadata-from-file startup-script=rsyslog-server
+
+
+#############
+# Postgres
+#############
+gcloud compute instances create postgres1 \
+--image-family centos-7 \
+--image-project centos-cloud \
+--zone us-east1-b \
+--tags "http-server","https-server" \
+--machine-type f1-micro \
+--scopes cloud-platform
+--metadata-from-file startup-script=postgres2
 
 
 gcloud compute instances create rsyslog-server2 \
@@ -59,9 +73,8 @@ gcloud compute instances create rsyslog-server2 \
 ##############
 gcloud compute instances create rsyslog-server2 \
 --image-family ubuntu-1804-lts \
---image-project centos-cloud \
+--image-project ubuntu-os-cloud \
 --zone us-east1-b \
---tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform
 --metadata-from-file startup-script=/path/to/script.sh
@@ -70,7 +83,8 @@ gcloud compute instances create rsyslog-server2 \
 --image-family ubuntu-1804-lts \
 --image-project centos-cloud \
 --zone us-east1-b \
---tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform
 --metadata-from-file startup-script=/path/to/script.sh
+
+
