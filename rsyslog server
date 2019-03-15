@@ -31,6 +31,7 @@ sudo semanage -a -t syslogd_port_t -p tcp 514
 #setting up machine to run as client rsyslog to server rsyslog
 #install this on a server
 #rsyslog should be first server up
+
 #client automation
 sudo yum update -y && yum install -y rsyslog 	
 sudo systemctl start rsyslog
