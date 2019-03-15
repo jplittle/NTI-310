@@ -1,4 +1,4 @@
-
+#!bin/bash
 yum -y install python-pip python-devel gcc postgresql-server postgresql-devel postgresql-contrib
 
 postgresql-setup initdb
