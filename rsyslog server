@@ -1,8 +1,8 @@
 #!/bin/bash
 #based on yutorial: https://www.tecmint.com/install-rsyslog-centralized-logging-in-centos-ubuntu/
 
-#have postgres server up
-#purpose: central location for server information/logs
+# postgres server
+#purpose:location for server logs
 sudo yum update -y && yum install -y rsyslog
 sudo systemctl start rsyslog
 sudo systemctl enable rsyslog
@@ -30,12 +30,12 @@ sudo semanage -a -t syslogd_port_t -p tcp 514
 #sudo systemctl status rsyslog
 #setting up machine to run as client rsyslog to server rsyslog
 #install this on a server
-#rsyslog should be first server sun up
+#rsyslog should be first server up
 #client automation
-sudo yum update -y && yum install -y rsyslog 	#CentOS 7
+sudo yum update -y && yum install -y rsyslog 	
 sudo systemctl start rsyslog
 sudo systemctl enable rsyslog
-#on the client add to end of file
+# on the client add to end of file
 echo "*.* @@ldap-rsyslog-1:514" >> /etc/rsyslog.conf
 sudo systemctl status rsyslog
 tail -f /var/log/messages
