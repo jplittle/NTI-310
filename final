@@ -11,7 +11,7 @@
 ###########
 # SysLog
 ###########
-gcloud compute instances create rsyslog-server1 \
+gcloud compute instances create rsyslog-server-final \
 --image-family centos-7 \
 --image-project centos-cloud \
 --zone us-east1-b \
@@ -24,7 +24,7 @@ gcloud compute instances create rsyslog-server1 \
 #############
 # Postgres
 #############
-gcloud compute instances create postgres1 \
+gcloud compute instances create postgres-final \
 --image-family centos-7 \
 --image-project centos-cloud \
 --zone us-east1-b \
@@ -33,58 +33,59 @@ gcloud compute instances create postgres1 \
 --scopes cloud-platform \
 --metadata-from-file startup-script=postgres2
 
-
-gcloud compute instances create rsyslog-server2 \
+############
+# LDAP Server
+############
+gcloud compute instances create ldap-server-final \
 --image-family centos-7 \
 --image-project centos-cloud \
 --zone us-east1-b \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
---metadata-from-file startup-script=/path/to/script.sh
+--metadata-from-file startup-script=LDAP-automate.sh
 
-
-gcloud compute instances create rsyslog-server2 \
+#############
+# NFS Server
+#############
+gcloud compute instances create nfs-server-final \
 --image-family centos-7 \
 --image-project centos-cloud \
 --zone us-east1-b \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \ 
---metadata-from-file startup-script=/path/to/script.sh
+--metadata-from-file startup-script=nfs-server-automate
 
-
-gcloud compute instances create rsyslog-server2 \
+#############
+# Django Server
+##############
+gcloud compute instances create django-server-final \
 --image-family centos-7 \
 --image-project centos-cloud \
 --zone us-east1-b \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
---metadata-from-file startup-script=/path/to/script.sh
-
-
-
-
-
+--metadata-from-file startup-script=django-server
 
 ##############
 # Clients
 ##############
-gcloud compute instances create rsyslog-server2 \
+gcloud compute instances create ldap-client-final \
 --image-family ubuntu-1804-lts \
 --image-project ubuntu-os-cloud \
 --zone us-east1-b \
 --machine-type f1-micro \
 --scopes cloud-platform \ 
---metadata-from-file startup-script=/path/to/script.sh
+--metadata-from-file startup-script=LDAP-client.sh
 
-gcloud compute instances create rsyslog-server2 \
+gcloud compute instances create nfs-client-final \
 --image-family ubuntu-1804-lts \
 --image-project centos-cloud \
 --zone us-east1-b \
 --machine-type f1-micro \
 --scopes cloud-platform \ 
---metadata-from-file startup-script=/path/to/script.sh
+--metadata-from-file startup-script=nfs-clienta
 
 
