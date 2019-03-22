@@ -54,7 +54,7 @@ gcloud compute instances create nfs-server-final \
 --zone us-west1-a \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
---scopes cloud-platform \ 
+--scopes cloud-platform \
 --metadata-from-file startup-script=nfs-server-automate.sh
 
 #############
