@@ -34,7 +34,7 @@ unalias cp
 #making backup in case something goes wrong
 cp /etc/phpldapadmin/config.php /etc/phpldapadmin/config.php.orig
 
-cp /tmp/jplittle/NTI-310/config.php /etc/phpldapadmin/config.php
+cp /tmp/NTI-310/config.php /etc/phpldapadmin/config.php
 chown ldap:apache /etc/phpldapadmin/config.php
 
 systemctl restart httpd.service
