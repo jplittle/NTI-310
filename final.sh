@@ -77,7 +77,7 @@ gcloud compute instances create ldap-client-final \
 --image-project ubuntu-os-cloud \
 --zone us-west1-a \
 --machine-type f1-micro \
---scopes cloud-platform \ 
+--scopes cloud-platform \
 --metadata-from-file startup-script=LDAP-client.sh
 
 gcloud compute instances create nfs-client-final \
@@ -85,7 +85,7 @@ gcloud compute instances create nfs-client-final \
 --image-project centos-cloud \
 --zone us-west1-a \
 --machine-type f1-micro \
---scopes cloud-platform \ 
+--scopes cloud-platform \
 --metadata-from-file startup-script=nfs-clienta.sh
 
 
