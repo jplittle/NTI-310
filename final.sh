@@ -1,3 +1,4 @@
+#!/bin/bash
 ###Clients, NFS server, and rsyslog server does NOT need the https and https tags!!!!!!!
 # sudo su
 # yum install git
