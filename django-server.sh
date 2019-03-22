@@ -30,4 +30,4 @@ sudo systemctl start rsyslog
 sudo systemctl enable rsyslog
 #on the client
 #add to end of file
-echo "*.* @@ldap-rsyslog-1:514" >> /etc/rsyslog.conf
+echo "*.* @@rsyslog-server-final:514" >> /etc/rsyslog.conf
