@@ -27,7 +27,7 @@ gcloud compute instances create rsyslog-server-final \
 gcloud compute instances create postgres-final \
 --image-family centos-7 \
 --image-project centos-cloud \
---zone us-east1-b \
+--zone us-west1-a \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
@@ -39,7 +39,7 @@ gcloud compute instances create postgres-final \
 gcloud compute instances create ldap-server-final \
 --image-family centos-7 \
 --image-project centos-cloud \
---zone us-east1-b \
+--zone us-west1-a \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
@@ -51,7 +51,7 @@ gcloud compute instances create ldap-server-final \
 gcloud compute instances create nfs-server-final \
 --image-family centos-7 \
 --image-project centos-cloud \
---zone us-east1-b \
+--zone us-west1-a \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \ 
@@ -63,7 +63,7 @@ gcloud compute instances create nfs-server-final \
 gcloud compute instances create django-server-final \
 --image-family centos-7 \
 --image-project centos-cloud \
---zone us-east1-b \
+--zone us-west1-a \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
