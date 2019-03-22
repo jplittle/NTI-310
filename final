@@ -18,7 +18,7 @@ gcloud compute instances create rsyslog-server-final \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
---metadata-from-file startup-script=rsyslog-server
+--metadata-from-file startup-script=rsyslog-server.sh
 
 
 #############
@@ -31,7 +31,7 @@ gcloud compute instances create postgres-final \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
---metadata-from-file startup-script=postgres1
+--metadata-from-file startup-script=postgres1.sh
 
 ############
 # LDAP Server
@@ -55,7 +55,7 @@ gcloud compute instances create nfs-server-final \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \ 
---metadata-from-file startup-script=nfs-server-automate
+--metadata-from-file startup-script=nfs-server-automate.sh
 
 #############
 # Django Server
@@ -67,7 +67,7 @@ gcloud compute instances create django-server-final \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
---metadata-from-file startup-script=django-server
+--metadata-from-file startup-script=django-server.sh
 
 ##############
 # Clients
@@ -86,6 +86,6 @@ gcloud compute instances create nfs-client-final \
 --zone us-east1-b \
 --machine-type f1-micro \
 --scopes cloud-platform \ 
---metadata-from-file startup-script=nfs-clienta
+--metadata-from-file startup-script=nfs-clienta.sh
 
 
