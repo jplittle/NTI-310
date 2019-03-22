@@ -75,7 +75,7 @@ gcloud compute instances create django-server-final \
 gcloud compute instances create ldap-client-final \
 --image-family ubuntu-1804-lts \
 --image-project ubuntu-os-cloud \
---zone us-east1-b \
+--zone us-west1-a \
 --machine-type f1-micro \
 --scopes cloud-platform \ 
 --metadata-from-file startup-script=LDAP-client.sh
@@ -83,7 +83,7 @@ gcloud compute instances create ldap-client-final \
 gcloud compute instances create nfs-client-final \
 --image-family ubuntu-1804-lts \
 --image-project centos-cloud \
---zone us-east1-b \
+--zone us-west1-a \
 --machine-type f1-micro \
 --scopes cloud-platform \ 
 --metadata-from-file startup-script=nfs-clienta.sh
