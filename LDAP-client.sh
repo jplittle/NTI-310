@@ -37,7 +37,7 @@ ldap-auth-config ldap-auth-config/pam_password select md5
 nslcd nslcd/ldap-sasl-mech select
 nslcd nslcd/ldap-sasl-authcid string
 ldap-auth-config ldap-auth-config/ldapns/base-dn string dc=nti310,dc=local
-ldap-auth-config ldap-auth-config/ldapns/ldap-server string ldap://ldap2/
+ldap-auth-config ldap-auth-config/ldapns/ldap-server string ldap://ldap3/
 nslcd nslcd/ldap-binddn string
 ldap-auth-config ldap-auth-config/dblogin boolean false" >> tempfile
 #while is looking thorugh temp file, pipes it to debconf selections so our selections get set in debconf
@@ -52,7 +52,7 @@ sudo auth-client-config -t nss -p lac_ldap
 echo "account sufficient pam_succeed_if.so uid = 0 use_uid quiet" >> /etc/pam.d/su
 
 sed -i 's/base dc=example,dc=net/base dc=nti310,dc=local/g'
-sed -i 's, ,uri ldapi:///,uri ldap://ldap2/,g' /etc/ldap.conf 
+sed -i 's, ,uri ldapi:///,uri ldap://ldap3/,g' /etc/ldap.conf 
 sed -i 's/rootbindn cn=manager,dc=example,dc=net/rootbinddn cn=ldapadm,dc=nti310,dc=local/g' /etc/dap.conf 
 
 # restarting nscd, enabling nscd
