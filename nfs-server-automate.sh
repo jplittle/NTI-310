@@ -70,4 +70,4 @@ sudo systemctl enable rsyslog
 
 #add to end of file
 
-echo "*.* @@nti310-final-logserver:514" >> /etc/rsyslog.conf
+echo "*.* @@rsyslog-server-final:514" >> /etc/rsyslog.conf
