@@ -31,7 +31,7 @@ gcloud compute instances create postgres-final \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
---metadata-from-file startup-script=postgres2
+--metadata-from-file startup-script=postgres1
 
 ############
 # LDAP Server
