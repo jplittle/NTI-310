@@ -43,7 +43,8 @@ echo "phpldapadmin is now up and running"
 echo "we are configuring ldap and ldap admin"
 
 #Generates and stores new passwords & restricts only root user to read
-newsecret=$(slappasswd -g)
+
+newsecret="P@ssw0rd1"
 newhash=$(slappasswd -s "$newsecret")
 echo -n "$newsecret" > /root/ldap_admin_pass
 chmod 0600 /root/ldap_admin_pass
