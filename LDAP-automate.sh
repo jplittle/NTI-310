@@ -273,6 +273,6 @@ sudo yum update -y && yum install -y rsyslog
 sudo systemctl start rsyslog
 sudo systemctl enable rsyslog
 # on the client add to end of file
-echo "*.* @@ldap-rsyslog-1:514" >> /etc/rsyslog.conf
+echo "*.* @@rsyslog-server-final:514" >> /etc/rsyslog.conf
 sudo systemctl status rsyslog
 tail -f /var/log/messages
