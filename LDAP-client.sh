@@ -43,7 +43,7 @@ ldap-auth-config ldap-auth-config/dblogin boolean false" >> tempfile
 #while is looking thorugh temp file, pipes it to debconf selections so our selections get set in debconf
 while read line; do echo "$line" | debconf-set-selections; done < tempfile
 # echoing pass into secret
-echo "FZB/NbBu" > /etc/ldap.secret
+echo "P@ssw0rd1" > /etc/ldap.secret
 # only read write by root
 chown 600 /etc/ldap.secret
 # confgiures client to use LDAP
