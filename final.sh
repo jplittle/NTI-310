@@ -15,7 +15,7 @@
 gcloud compute instances create rsyslog-server-final \
 --image-family centos-7 \
 --image-project centos-cloud \
---zone us-east1-b \
+--zone us-east4-c \
 --machine-type f1-micro \
 --scopes cloud-platform \
 --metadata-from-file startup-script=rsyslog-server.sh
@@ -27,7 +27,7 @@ gcloud compute instances create rsyslog-server-final \
 gcloud compute instances create postgres-final \
 --image-family centos-7 \
 --image-project centos-cloud \
---zone us-west1-a \
+--zone us-east4-c \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
@@ -39,7 +39,7 @@ gcloud compute instances create postgres-final \
 gcloud compute instances create ldap-server-final \
 --image-family centos-7 \
 --image-project centos-cloud \
---zone us-west1-a \
+--zone us-east4-c \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
@@ -51,7 +51,7 @@ gcloud compute instances create ldap-server-final \
 gcloud compute instances create nfs-server-final \
 --image-family centos-7 \
 --image-project centos-cloud \
---zone us-west1-a \
+--zone us-east4-c \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
@@ -63,7 +63,7 @@ gcloud compute instances create nfs-server-final \
 gcloud compute instances create django-server-final \
 --image-family centos-7 \
 --image-project centos-cloud \
---zone us-west1-a \
+--zone us-east4-c \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
@@ -76,7 +76,7 @@ gcloud compute instances create django-server-final \
 gcloud compute instances create ldap-client-final \
 --image-family ubuntu-1804-lts \
 --image-project ubuntu-os-cloud \
---zone us-west1-a \
+--zone us-east4-c \
 --machine-type f1-micro \
 --scopes cloud-platform \
 --metadata-from-file startup-script=LDAP-client.sh
@@ -84,9 +84,7 @@ gcloud compute instances create ldap-client-final \
 gcloud compute instances create nfs-client-final \
 --image-family ubuntu-1804-lts \
 --image-project ubuntu-os-cloud \
---zone us-west1-a \
+--zone us-east4-c \
 --machine-type f1-micro \
 --scopes cloud-platform \
 --metadata-from-file startup-script=nfs-clienta.sh
-
-
